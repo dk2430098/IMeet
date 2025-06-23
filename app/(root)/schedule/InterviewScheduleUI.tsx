@@ -235,18 +235,19 @@ function InterviewScheduleUI() {
                 {/* CALENDAR */}
                 <div className="space-y-2">
                   <label className="text-sm font-medium">Date</label>
-                  <Calendar
-                      mode="single"
-                      selected={formData.date}
-                      onSelect={(date: Date | null) => {
-                        if (date) {
-                          setFormData({ ...formData, date });
-                        }
-                      }}
-                      disabled={(date: Date) => date < new Date()}
-                      className="rounded-md border"
-                      required
-                    />
+                 <Calendar
+                  mode="single"
+                  selected={formData.date}
+                  onSelect={(date) => {
+                    if (date) {
+                      setFormData({ ...formData, date });
+                    }
+                  }}
+                  required
+                  disabled={(date) => date < new Date()}
+                  className="rounded-md border"
+                />
+
 
                 </div>
 
