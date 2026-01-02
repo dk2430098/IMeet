@@ -1,13 +1,15 @@
 import { DeviceSettings, useCall, VideoPreview } from "@stream-io/video-react-sdk";
 import { useEffect, useState } from "react";
 import { Card } from "./ui/card";
-import { CameraIcon, MicIcon, SettingsIcon } from "lucide-react";
+import { CameraIcon, MicIcon, SettingsIcon, Loader2 } from "lucide-react";
 import { Switch } from "./ui/switch";
 import { Button } from "./ui/button";
+import toast from "react-hot-toast";
 
 function MeetingSetup({ onSetupComplete }: { onSetupComplete: () => void }) {
   const [isCameraDisabled, setIsCameraDisabled] = useState(true);
   const [isMicDisabled, setIsMicDisabled] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const call = useCall();
 
@@ -26,8 +28,18 @@ function MeetingSetup({ onSetupComplete }: { onSetupComplete: () => void }) {
   }, [isMicDisabled, call.microphone]);
 
   const handleJoin = async () => {
-    await call.join();
-    onSetupComplete();
+    setIsLoading(true);
+    try {
+      await call.join();
+      onSetupComplete();
+    } catch (error) {
+      console.error("Failed to join meeting", error);
+      toast.error("Failed to join meeting. Please check your camera/microphone permissions.");
+      setIsLoading(false);
+    }
+    // Note: We don't Reset isLoading on success because we are likely unmounting/navigating? 
+    // Actually onSetupComplete switches the view to MeetingRoom in parent. 
+    // So unmounting usually happens.
   };
 
 
@@ -118,8 +130,8 @@ function MeetingSetup({ onSetupComplete }: { onSetupComplete: () => void }) {
 
                 {/* JOIN BTN */}
                 <div className="space-y-3 mt-8">
-                  <Button className="w-full" size="lg" onClick={handleJoin}>
-                    Join Meeting
+                  <Button className="w-full" size="lg" onClick={handleJoin} disabled={isLoading}>
+                    {isLoading ? <Loader2 className="w-4 h-4 animate-spin mr-2" /> : "Join Meeting"}
                   </Button>
                   <p className="text-xs text-center text-muted-foreground">
                     Do not worry, our team is super friendly! We want you to succeed. 🎉

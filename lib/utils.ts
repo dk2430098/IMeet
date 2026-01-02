@@ -80,7 +80,7 @@ export const calculateRecordingDuration = (startTime: string, endTime: string) =
 export const getMeetingStatus = (interview: Interview) => {
   const now = new Date();
   const interviewStartTime = interview.startTime;
-  const endTime = addHours(interviewStartTime, 1);
+  const endTime = interview.endTime || addHours(interviewStartTime, 1);
 
   if (
     interview.status === "completed" ||
@@ -88,7 +88,10 @@ export const getMeetingStatus = (interview: Interview) => {
     interview.status === "succeeded"
   )
     return "completed";
+
   if (isWithinInterval(now, { start: interviewStartTime, end: endTime })) return "live";
+
   if (isBefore(now, interviewStartTime)) return "upcoming";
-  return "completed";
+
+  return "expired";
 };

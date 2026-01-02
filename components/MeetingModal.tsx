@@ -3,6 +3,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle } from "./ui/dialog";
 import { Input } from "./ui/input";
 import { Button } from "./ui/button";
 import useMeetingActions from "@/hooks/useMeetingActions";
+import { Loader2 } from "lucide-react";
 
 interface MeetingModalProps {
   isOpen: boolean;
@@ -14,18 +15,23 @@ interface MeetingModalProps {
 function MeetingModal({ isOpen, onClose, title, isJoinMeeting }: MeetingModalProps) {
   const [meetingUrl, setMeetingUrl] = useState("");
   const { createInstantMeeting, joinMeeting } = useMeetingActions();
+  const [isLoading, setIsLoading] = useState(false);
 
-  const handleStart = () => {
+  const handleStart = async () => {
+    setIsLoading(true);
     if (isJoinMeeting) {
       // if it's a full URL extract meeting ID
       const meetingId = meetingUrl.split("/").pop();
       if (meetingId) joinMeeting(meetingId);
     } else {
-      createInstantMeeting();
+      await createInstantMeeting();
     }
 
     setMeetingUrl("");
+    // Note: We don't Reset isLoading here immediately for 'join' because nav is happening.
+    // Ideally we should close modal? 
     onClose();
+    setIsLoading(false);
   };
 
   return (
@@ -48,7 +54,8 @@ function MeetingModal({ isOpen, onClose, title, isJoinMeeting }: MeetingModalPro
             <Button variant="outline" onClick={onClose}>
               Cancel
             </Button>
-            <Button onClick={handleStart} disabled={isJoinMeeting && !meetingUrl.trim()}>
+            <Button onClick={handleStart} disabled={isLoading || (isJoinMeeting && !meetingUrl.trim())}>
+              {isLoading && <Loader2 className="w-4 h-4 animate-spin mr-2" />}
               {isJoinMeeting ? "Join Meeting" : "Start Meeting"}
             </Button>
           </div>

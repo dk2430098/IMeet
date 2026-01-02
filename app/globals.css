@@ -193,3 +193,15 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* Hide Next.js Static Indicator and Toasts */
+[data-nextjs-toast],
+nextjs-portal,
+#nextjs-dev-indicator,
+[class*="nextjs-dev-indicator"],
+[data-nextjs-dialog-overlay] {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
