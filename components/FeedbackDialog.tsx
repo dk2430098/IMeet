@@ -3,11 +3,10 @@ import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { useMutation, useQuery } from "convex/react";
 import { api } from "@/convex/_generated/api";
-import { useUser } from "@clerk/nextjs";
 import { Loader2, Star } from "lucide-react";
 import { useState } from "react";
 import toast from "react-hot-toast";
-import { Doc, Id } from "@/convex/_generated/dataModel";
+import { Id } from "@/convex/_generated/dataModel";
 
 interface FeedbackDialogProps {
     isOpen: boolean;
@@ -16,7 +15,7 @@ interface FeedbackDialogProps {
 }
 
 export default function FeedbackDialog({ isOpen, onClose, interviewId }: FeedbackDialogProps) {
-    const { user } = useUser();
+
     const comments = useQuery(api.comments.getComments, { interviewId });
     const addComment = useMutation(api.comments.addComment);
 
@@ -73,7 +72,7 @@ export default function FeedbackDialog({ isOpen, onClose, interviewId }: Feedbac
                             ))}
                         </div>
                         <div className="bg-muted p-4 rounded-lg">
-                            <p className="text-sm text-muted-foreground italic">"{existingFeedback.content}"</p>
+                            <p className="text-sm text-muted-foreground italic">&quot;{existingFeedback.content}&quot;</p>
                         </div>
                         <div className="flex justify-end">
                             <Button variant="outline" onClick={onClose}>Close</Button>

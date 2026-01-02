@@ -17,6 +17,7 @@ const FloatingReactions = () => {
 
         // Listener for new reactions
         // Stream SDK typically emits 'reaction.new' for incoming reactions
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         const handleNewReaction = (event: any) => {
             // payload might differ. usually event.reaction.emoji or event.reaction.custom.emoji
             console.log("New reaction event:", event); // Debug log (can remove later)
@@ -39,9 +40,11 @@ const FloatingReactions = () => {
             }, 3000);
         };
 
+        // @ts-expect-error: Stream SDK type mismatch for custom event
         call.on("reaction.new", handleNewReaction);
 
         return () => {
+            // @ts-expect-error: Stream SDK type mismatch for custom event
             call.off("reaction.new", handleNewReaction);
         };
     }, [call]);

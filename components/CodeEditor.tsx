@@ -4,7 +4,7 @@ import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from "./ui/resiz
 import { ScrollArea, ScrollBar } from "./ui/scroll-area";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "./ui/select";
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
-import { AlertCircleIcon, BookIcon, LightbulbIcon, Play, Terminal, Share2, Loader2, Code2, RotateCcw, CloudUpload } from "lucide-react";
+import { BookIcon, LightbulbIcon, Play, Terminal, Share2, Loader2, Code2, RotateCcw, CloudUpload } from "lucide-react";
 import Editor from "@monaco-editor/react";
 import Image from "next/image";
 import { Button } from "./ui/button";
@@ -12,7 +12,6 @@ import toast from "react-hot-toast";
 import { useCall } from "@stream-io/video-react-sdk"; // Stream Call
 import { useMutation, useQuery } from "convex/react"; // Convex
 import { api } from "../convex/_generated/api";
-import { useUser } from "@clerk/nextjs";
 
 const LANGUAGE_VERSIONS: Record<string, string> = {
   javascript: "18.15.0",
@@ -22,8 +21,8 @@ const LANGUAGE_VERSIONS: Record<string, string> = {
 };
 
 function CodeEditor() {
-  const { user } = useUser();
-  const userId = user?.id; // Kept for future use if needed
+
+  // const userId = user?.id; // Kept for future use if needed
   const call = useCall();
   const streamCallId = call?.id || "";
 
@@ -84,7 +83,7 @@ function CodeEditor() {
         // Or keep what we have? 
         // Standard behavior: Switch lang -> Load starter (or cache).
         // Since code sync is OFF, we load local starter.
-        setCode(prev => {
+        setCode(() => {
           // We don't have access to the cached code effectively here without complex logic.
           // Simplest: just load starter.
           return selectedQuestion.starterCode[interviewState.language as LanguageId];
@@ -128,7 +127,7 @@ function CodeEditor() {
     setLanguage(newLanguage);
 
     // Restore from cache if exists, otherwise load starter code
-    setCode((prevCode) => {
+    setCode(() => {
       return codeCache[newLanguage] || selectedQuestion.starterCode[newLanguage];
     });
 

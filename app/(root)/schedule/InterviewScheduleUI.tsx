@@ -59,6 +59,7 @@ function InterviewScheduleUI() {
   const [openCandidate, setOpenCandidate] = useState(false);
   const [openInterviewer, setOpenInterviewer] = useState(false);
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [selectedInterview, setSelectedInterview] = useState<any>(null);
 
   const liveInterviews = interviews?.filter((i) => getMeetingStatus(i) === "live") || [];
@@ -147,10 +148,6 @@ function InterviewScheduleUI() {
 
   const selectedInterviewers = interviewers.filter((i) =>
     formData.interviewerIds.includes(i.clerkId)
-  );
-
-  const availableInterviewers = interviewers.filter(
-    (i) => !formData.interviewerIds.includes(i.clerkId)
   );
 
   const getCandidateDetails = (candidateId: string) => candidates.find(c => c.clerkId === candidateId);

@@ -3,8 +3,8 @@ import toast from "react-hot-toast";
 import { useState } from "react";
 import { format } from "date-fns";
 import { calculateRecordingDuration } from "@/lib/utils";
-import { Card, CardContent, CardFooter, CardHeader } from "./ui/card";
-import { CalendarIcon, ClockIcon, CopyIcon, PlayIcon, Share2Icon, LoaderIcon, AlertTriangle } from "lucide-react";
+import { Card, CardFooter, CardHeader } from "./ui/card";
+import { CalendarIcon, PlayIcon, Share2Icon, LoaderIcon, AlertTriangle } from "lucide-react";
 import { Button } from "./ui/button";
 
 function RecordingCard({ recording }: { recording: CallRecording }) {
@@ -27,7 +27,7 @@ function RecordingCard({ recording }: { recording: CallRecording }) {
     try {
       await navigator.clipboard.writeText(recording.url);
       toast.success("Recording link copied to clipboard");
-    } catch (error) {
+    } catch {
       toast.error("Failed to copy link to clipboard");
     }
   };

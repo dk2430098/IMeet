@@ -12,9 +12,9 @@ import { useMutation, useQuery } from "convex/react";
 import { api } from "@/convex/_generated/api";
 import { useRouter } from "next/navigation";
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 function MeetingControls({ onLeave }: { onLeave: () => void }) {
     const call = useCall();
-    const router = useRouter();
     const { useMicrophoneState, useCameraState, useScreenShareState } = useCallStateHooks();
 
     const { isEnabled: isMicOn } = useMicrophoneState();
@@ -65,6 +65,7 @@ function MeetingControls({ onLeave }: { onLeave: () => void }) {
                             await call?.startRecording();
                             toast.success("Recording started");
                         }
+                        // eslint-disable-next-line @typescript-eslint/no-explicit-any
                     } catch (e: any) {
                         console.error("Recording error:", e);
                         toast.error(e?.message || "Failed to toggle recording");

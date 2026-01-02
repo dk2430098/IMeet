@@ -4,7 +4,6 @@ import {
   PaginatedGridLayout,
   SpeakerLayout,
   useCallStateHooks,
-  useCall,
 } from "@stream-io/video-react-sdk";
 import { LayoutListIcon, LoaderIcon, UsersIcon, ChevronLeft, ChevronRight, MaximizeIcon, CodeIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
@@ -24,7 +23,6 @@ import FloatingReactions from "./FloatingReactions";
 
 function MeetingRoom() {
   const router = useRouter();
-  const call = useCall();
   const [layout, setLayout] = useState<"grid" | "speaker">("speaker");
   const [showParticipants, setShowParticipants] = useState(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);

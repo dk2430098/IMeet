@@ -3,7 +3,7 @@
 import { useQuery, useAction } from "convex/react";
 import { api } from "../../../convex/_generated/api";
 import { useUser } from "@clerk/nextjs";
-import { CheckCircle2, Circle, Clock, Database, Globe, Trophy, Target, ChevronRight } from "lucide-react";
+import { CheckCircle2, Clock, Database, Globe, Trophy, Target, ChevronRight } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import Link from "next/link";
