@@ -4,7 +4,7 @@
 
 IMeet is a comprehensive platform designed to streamline the technical interview process. It combines high-quality video conferencing, a collaborative real-time code editor, and a hybrid practice problem system into a single, cohesive interface.
 
-[![Live Demo](https://img.shields.io/badge/Live%20Demo-Visit-blue?style=for-the-badge&logo=vercel)](https://i-meet-73tv.vercel.app/)
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-Visit-blue?style=for-the-badge&logo=vercel)]([https://i-meet-73tv.vercel.app/](https://i-meet-73tv-8mvjv2cvq-deepak-kumars-projects-fcc2a798.vercel.app/))
 [![GitHub](https://img.shields.io/badge/GitHub-View%20Code-black?style=for-the-badge&logo=github)](https://github.com/dk2430098/IMeet)
 
 ---
