@@ -126,22 +126,22 @@ NEXT_PUBLIC_FORMSPREE_URL=...
 ### 📸 Screenshots
 
 ### Landing Page
-![Landing Page](/screenshots/landing-page.png)
+![Landing Page](public/screenshots/landing-page.png)
 
 ### Dashboard (Candidate View)
-![Dashboard Candidate](/screenshots/dashboard-candidate.png)
+![Dashboard Candidate](public/screenshots/dashboard-candidate.png)
 
 ### Dashboard (Interviewer View)
-![Dashboard Interviewer](/screenshots/dashboard-interviewer.png)
+![Dashboard Interviewer](public/screenshots/dashboard-interviewer.png)
 
 ### Meeting Room (Video & Code)
-![Meeting Room](/screenshots/meeting-room.png)
+![Meeting Room](public/screenshots/meeting-room.png)
 
 ### Practice Area
-![Practice Area](/screenshots/practice-area.png)
+![Practice Area](public/screenshots/practice-area.png)
 
 ### Scheduling Interface
-![Scheduling](/screenshots/scheduling.png)
+![Scheduling](public/screenshots/scheduling.png)
 
 #### ⚠️ Known Limitations
 *   **Free Tier**: Stream Video has monthly minute caps. Convex has database bandwidth limits.
